@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="João Matheus Slujala Krüger Taborda Hneda - Mestrando em Bioestatística (UEM)" />
+
+
+<title>Lista de Exercícios 2 — Estatística Computacional</title>
+
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Listas de Exercícios - Estatística Computacional Aplicada a Bioestatística</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Lista 1</a>
+</li>
+<li>
+  <a href="about.html">Lista 2</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a>
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a>
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lista de Exercícios 2 — Estatística
+Computacional</h1>
+<h4 class="author">João Matheus Slujala Krüger Taborda Hneda - Mestrando
+em Bioestatística (UEM)</h4>
+
+</div>
+
+
+<p><strong>Abril/2022</strong></p>
+<div
+id="considere-o-arquivo-inmet_s_pr_a835_maringa_01-01-2021_a_31-12-2021.csv-em-anexo-com-informações-sobre-variáveis-meteorológicas-medidas-na-estação-meteorológica-de-maringá"
+class="section level1">
+<h1>1. Considere o arquivo
+“INMET_S_PR_A835_MARINGA_01-01-2021_A_31-12-2021.CSV”, em anexo, com
+informações sobre variáveis meteorológicas medidas na estação
+meteorológica de Maringá</h1>
+<div
+id="a-a-partir-do-banco-de-dados-de-entrada-crie-um-r-data-frame-com-nome-dados."
+class="section level2">
+<h2>(a) A partir do banco de dados de entrada crie um R data-frame com
+nome dados.</h2>
+<pre class="r"><code>remove(list=ls())
+options(digits=22)</code></pre>
+<pre class="r"><code>library(magrittr)
+dados &lt;- read.table(file = &quot;INMET_S_PR_A835_MARINGA_01-01-2021_A_31-12-2021.CSV&quot;,
+                    skip = 8, sep = &quot;;&quot;, header = T)
+dados %&gt;% str()</code></pre>
+<pre><code>## &#39;data.frame&#39;:    8760 obs. of  20 variables:
+##  $ Data                                                 : chr  &quot;2021/01/01&quot; &quot;2021/01/01&quot; &quot;2021/01/01&quot; &quot;2021/01/01&quot; ...
+##  $ Hora.UTC                                             : chr  &quot;0000 UTC&quot; &quot;0100 UTC&quot; &quot;0200 UTC&quot; &quot;0300 UTC&quot; ...
+##  $ PRECIPITAÃ.ÃƒO.TOTAL..HORÃ.RIO..mm.                  : chr  &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+##  $ PRESSAO.ATMOSFERICA.AO.NIVEL.DA.ESTACAO..HORARIA..mB.: chr  &quot;952&quot; &quot;952,2&quot; &quot;951,6&quot; &quot;951,3&quot; ...
+##  $ PRESSÃƒO.ATMOSFERICA.MAX.NA.HORA.ANT...AUT...mB.     : chr  &quot;952&quot; &quot;952,3&quot; &quot;952,3&quot; &quot;951,6&quot; ...
+##  $ PRESSÃƒO.ATMOSFERICA.MIN..NA.HORA.ANT...AUT...mB.    : chr  &quot;951,4&quot; &quot;951,8&quot; &quot;951,6&quot; &quot;951,2&quot; ...
+##  $ RADIACAO.GLOBAL..Kj.mÂ².                             : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##  $ TEMPERATURA.DO.AR...BULBO.SECO..HORARIA..Â.C.        : chr  &quot;22,1&quot; &quot;21,7&quot; &quot;21,6&quot; &quot;21,2&quot; ...
+##  $ TEMPERATURA.DO.PONTO.DE.ORVALHO..Â.C.                : chr  &quot;20,6&quot; &quot;20,5&quot; &quot;20,4&quot; &quot;20,2&quot; ...
+##  $ TEMPERATURA.MÃ.XIMA.NA.HORA.ANT...AUT...Â.C.         : chr  &quot;23,3&quot; &quot;22,1&quot; &quot;21,8&quot; &quot;21,6&quot; ...
+##  $ TEMPERATURA.MÃ.NIMA.NA.HORA.ANT...AUT...Â.C.         : chr  &quot;22,1&quot; &quot;21,7&quot; &quot;21,6&quot; &quot;21,2&quot; ...
+##  $ TEMPERATURA.ORVALHO.MAX..NA.HORA.ANT...AUT...Â.C.    : chr  &quot;20,7&quot; &quot;20,6&quot; &quot;20,6&quot; &quot;20,4&quot; ...
+##  $ TEMPERATURA.ORVALHO.MIN..NA.HORA.ANT...AUT...Â.C.    : chr  &quot;19,6&quot; &quot;20,5&quot; &quot;20,4&quot; &quot;20,2&quot; ...
+##  $ UMIDADE.REL..MAX..NA.HORA.ANT...AUT.....             : int  92 93 93 94 94 93 94 94 93 94 ...
+##  $ UMIDADE.REL..MIN..NA.HORA.ANT...AUT.....             : int  80 92 93 93 93 91 93 93 93 92 ...
+##  $ UMIDADE.RELATIVA.DO.AR..HORARIA....                  : int  92 93 93 94 93 93 94 93 93 94 ...
+##  $ VENTO..DIREÃ.ÃƒO.HORARIA..gr...Â...gr..              : int  124 104 133 2 23 23 111 87 60 68 ...
+##  $ VENTO..RAJADA.MAXIMA..m.s.                           : chr  &quot;5,7&quot; &quot;5,7&quot; &quot;3,7&quot; &quot;2,3&quot; ...
+##  $ VENTO..VELOCIDADE.HORARIA..m.s.                      : chr  &quot;2,8&quot; &quot;2&quot; &quot;,9&quot; &quot;0&quot; ...
+##  $ X                                                    : logi  NA NA NA NA NA NA ...</code></pre>
+<pre class="r"><code>dados %&gt;% head(10)      </code></pre>
+<pre><code>##          Data Hora.UTC PRECIPITAÃ.ÃƒO.TOTAL..HORÃ.RIO..mm.
+## 1  2021/01/01 0000 UTC                                   0
+## 2  2021/01/01 0100 UTC                                   0
+## 3  2021/01/01 0200 UTC                                   0
+## 4  2021/01/01 0300 UTC                                   0
+## 5  2021/01/01 0400 UTC                                   0
+## 6  2021/01/01 0500 UTC                                   0
+## 7  2021/01/01 0600 UTC                                   0
+## 8  2021/01/01 0700 UTC                                   0
+## 9  2021/01/01 0800 UTC                                   0
+## 10 2021/01/01 0900 UTC                                   0
+##    PRESSAO.ATMOSFERICA.AO.NIVEL.DA.ESTACAO..HORARIA..mB.
+## 1                                                    952
+## 2                                                  952,2
+## 3                                                  951,6
+## 4                                                  951,3
+## 5                                                  951,1
+## 6                                                  950,6
+## 7                                                  950,5
+## 8                                                    951
+## 9                                                  951,7
+## 10                                                   952
+##    PRESSÃƒO.ATMOSFERICA.MAX.NA.HORA.ANT...AUT...mB.
+## 1                                               952
+## 2                                             952,3
+## 3                                             952,3
+## 4                                             951,6
+## 5                                             951,3
+## 6                                             951,1
+## 7                                             950,6
+## 8                                               951
+## 9                                             951,7
+## 10                                              952
+##    PRESSÃƒO.ATMOSFERICA.MIN..NA.HORA.ANT...AUT...mB. RADIACAO.GLOBAL..Kj.mÂ².
+## 1                                              951,4                         
+## 2                                              951,8                         
+## 3                                              951,6                         
+## 4                                              951,2                         
+## 5                                                951                         
+## 6                                              950,6                         
+## 7                                              950,4                         
+## 8                                              950,5                         
+## 9                                                951                         
+## 10                                             951,6                     29,1
+##    TEMPERATURA.DO.AR...BULBO.SECO..HORARIA..Â.C.
+## 1                                           22,1
+## 2                                           21,7
+## 3                                           21,6
+## 4                                           21,2
+## 5                                           21,5
+## 6                                           20,8
+## 7                                           21,1
+## 8                                           21,1
+## 9                                             21
+## 10                                          20,7
+##    TEMPERATURA.DO.PONTO.DE.ORVALHO..Â.C.
+## 1                                   20,6
+## 2                                   20,5
+## 3                                   20,4
+## 4                                   20,2
+## 5                                   20,3
+## 6                                   19,6
+## 7                                   20,1
+## 8                                   19,9
+## 9                                   19,8
+## 10                                  19,6
+##    TEMPERATURA.MÃ.XIMA.NA.HORA.ANT...AUT...Â.C.
+## 1                                          23,3
+## 2                                          22,1
+## 3                                          21,8
+## 4                                          21,6
+## 5                                          21,5
+## 6                                          21,6
+## 7                                          21,1
+## 8                                          21,2
+## 9                                          21,1
+## 10                                         21,1
+##    TEMPERATURA.MÃ.NIMA.NA.HORA.ANT...AUT...Â.C.
+## 1                                          22,1
+## 2                                          21,7
+## 3                                          21,6
+## 4                                          21,2
+## 5                                          21,2
+## 6                                          20,7
+## 7                                          20,6
+## 8                                            21
+## 9                                          20,9
+## 10                                         20,4
+##    TEMPERATURA.ORVALHO.MAX..NA.HORA.ANT...AUT...Â.C.
+## 1                                               20,7
+## 2                                               20,6
+## 3                                               20,6
+## 4                                               20,4
+## 5                                               20,5
+## 6                                               20,3
+## 7                                               20,1
+## 8                                               20,1
+## 9                                               19,9
+## 10                                              19,8
+##    TEMPERATURA.ORVALHO.MIN..NA.HORA.ANT...AUT...Â.C.
+## 1                                               19,6
+## 2                                               20,5
+## 3                                               20,4
+## 4                                               20,2
+## 5                                               20,1
+## 6                                               19,5
+## 7                                               19,5
+## 8                                               19,9
+## 9                                               19,7
+## 10                                              19,2
+##    UMIDADE.REL..MAX..NA.HORA.ANT...AUT.....
+## 1                                        92
+## 2                                        93
+## 3                                        93
+## 4                                        94
+## 5                                        94
+## 6                                        93
+## 7                                        94
+## 8                                        94
+## 9                                        93
+## 10                                       94
+##    UMIDADE.REL..MIN..NA.HORA.ANT...AUT..... UMIDADE.RELATIVA.DO.AR..HORARIA....
+## 1                                        80                                  92
+## 2                                        92                                  93
+## 3                                        93                                  93
+## 4                                        93                                  94
+## 5                                        93                                  93
+## 6                                        91                                  93
+## 7                                        93                                  94
+## 8                                        93                                  93
+## 9                                        93                                  93
+## 10                                       92                                  94
+##    VENTO..DIREÃ.ÃƒO.HORARIA..gr...Â...gr.. VENTO..RAJADA.MAXIMA..m.s.
+## 1                                      124                        5,7
+## 2                                      104                        5,7
+## 3                                      133                        3,7
+## 4                                        2                        2,3
+## 5                                       23                        1,6
+## 6                                       23                        1,1
+## 7                                      111                        1,5
+## 8                                       87                          2
+## 9                                       60                        2,2
+## 10                                      68                          2
+##    VENTO..VELOCIDADE.HORARIA..m.s.  X
+## 1                              2,8 NA
+## 2                                2 NA
+## 3                               ,9 NA
+## 4                                0 NA
+## 5                               ,2 NA
+## 6                               ,2 NA
+## 7                               ,1 NA
+## 8                               ,1 NA
+## 9                               ,9 NA
+## 10                              ,1 NA</code></pre>
+</div>
+<div
+id="b-altere-o-nome-das-variáveis-para-data-hora-utc-precipitacao-pressao"
+class="section level2">
+<h2>(b) Altere o nome das variáveis para data, hora, utc, precipitacao,
+pressao,</h2>
+<pre class="r"><code>names(dados) &lt;- c(&quot;Data&quot;,&quot;hora&quot;,&quot;precp&quot;,&quot;press&quot;,&quot;pressmax&quot;,&quot;pressmin&quot;, names(dados[-c(1:6)]))
+names(dados) &lt;- gsub(&quot;\\.&quot;, &quot;&quot;, names(dados))
+head(dados)</code></pre>
+<pre><code>##         Data     hora precp press pressmax pressmin RADIACAOGLOBALKjmÂ²
+## 1 2021/01/01 0000 UTC     0   952      952    951,4                    
+## 2 2021/01/01 0100 UTC     0 952,2    952,3    951,8                    
+## 3 2021/01/01 0200 UTC     0 951,6    952,3    951,6                    
+## 4 2021/01/01 0300 UTC     0 951,3    951,6    951,2                    
+## 5 2021/01/01 0400 UTC     0 951,1    951,3      951                    
+## 6 2021/01/01 0500 UTC     0 950,6    951,1    950,6                    
+##   TEMPERATURADOARBULBOSECOHORARIAÂC TEMPERATURADOPONTODEORVALHOÂC
+## 1                              22,1                          20,6
+## 2                              21,7                          20,5
+## 3                              21,6                          20,4
+## 4                              21,2                          20,2
+## 5                              21,5                          20,3
+## 6                              20,8                          19,6
+##   TEMPERATURAMÃXIMANAHORAANTAUTÂC TEMPERATURAMÃNIMANAHORAANTAUTÂC
+## 1                            23,3                            22,1
+## 2                            22,1                            21,7
+## 3                            21,8                            21,6
+## 4                            21,6                            21,2
+## 5                            21,5                            21,2
+## 6                            21,6                            20,7
+##   TEMPERATURAORVALHOMAXNAHORAANTAUTÂC TEMPERATURAORVALHOMINNAHORAANTAUTÂC
+## 1                                20,7                                19,6
+## 2                                20,6                                20,5
+## 3                                20,6                                20,4
+## 4                                20,4                                20,2
+## 5                                20,5                                20,1
+## 6                                20,3                                19,5
+##   UMIDADERELMAXNAHORAANTAUT UMIDADERELMINNAHORAANTAUT
+## 1                        92                        80
+## 2                        93                        92
+## 3                        93                        93
+## 4                        94                        93
+## 5                        94                        93
+## 6                        93                        91
+##   UMIDADERELATIVADOARHORARIA VENTODIREÃÃƒOHORARIAgrÂgr VENTORAJADAMAXIMAms
+## 1                         92                       124                 5,7
+## 2                         93                       104                 5,7
+## 3                         93                       133                 3,7
+## 4                         94                         2                 2,3
+## 5                         93                        23                 1,6
+## 6                         93                        23                 1,1
+##   VENTOVELOCIDADEHORARIAms  X
+## 1                      2,8 NA
+## 2                        2 NA
+## 3                       ,9 NA
+## 4                        0 NA
+## 5                       ,2 NA
+## 6                       ,2 NA</code></pre>
+</div>
+<div id="c-remova-do-objeto-dados-das-variáveleis-inúteis."
+class="section level2">
+<h2>(c) Remova do objeto dados da(s) variável(eis) “inúteis”.</h2>
+<pre class="r"><code>dados$nada &lt;- NULL
+dados$X &lt;- NULL
+dados %&gt;% head(10)</code></pre>
+<pre><code>##          Data     hora precp press pressmax pressmin RADIACAOGLOBALKjmÂ²
+## 1  2021/01/01 0000 UTC     0   952      952    951,4                    
+## 2  2021/01/01 0100 UTC     0 952,2    952,3    951,8                    
+## 3  2021/01/01 0200 UTC     0 951,6    952,3    951,6                    
+## 4  2021/01/01 0300 UTC     0 951,3    951,6    951,2                    
+## 5  2021/01/01 0400 UTC     0 951,1    951,3      951                    
+## 6  2021/01/01 0500 UTC     0 950,6    951,1    950,6                    
+## 7  2021/01/01 0600 UTC     0 950,5    950,6    950,4                    
+## 8  2021/01/01 0700 UTC     0   951      951    950,5                    
+## 9  2021/01/01 0800 UTC     0 951,7    951,7      951                    
+## 10 2021/01/01 0900 UTC     0   952      952    951,6                29,1
+##    TEMPERATURADOARBULBOSECOHORARIAÂC TEMPERATURADOPONTODEORVALHOÂC
+## 1                               22,1                          20,6
+## 2                               21,7                          20,5
+## 3                               21,6                          20,4
+## 4                               21,2                          20,2
+## 5                               21,5                          20,3
+## 6                               20,8                          19,6
+## 7                               21,1                          20,1
+## 8                               21,1                          19,9
+## 9                                 21                          19,8
+## 10                              20,7                          19,6
+##    TEMPERATURAMÃXIMANAHORAANTAUTÂC TEMPERATURAMÃNIMANAHORAANTAUTÂC
+## 1                             23,3                            22,1
+## 2                             22,1                            21,7
+## 3                             21,8                            21,6
+## 4                             21,6                            21,2
+## 5                             21,5                            21,2
+## 6                             21,6                            20,7
+## 7                             21,1                            20,6
+## 8                             21,2                              21
+## 9                             21,1                            20,9
+## 10                            21,1                            20,4
+##    TEMPERATURAORVALHOMAXNAHORAANTAUTÂC TEMPERATURAORVALHOMINNAHORAANTAUTÂC
+## 1                                 20,7                                19,6
+## 2                                 20,6                                20,5
+## 3                                 20,6                                20,4
+## 4                                 20,4                                20,2
+## 5                                 20,5                                20,1
+## 6                                 20,3                                19,5
+## 7                                 20,1                                19,5
+## 8                                 20,1                                19,9
+## 9                                 19,9                                19,7
+## 10                                19,8                                19,2
+##    UMIDADERELMAXNAHORAANTAUT UMIDADERELMINNAHORAANTAUT
+## 1                         92                        80
+## 2                         93                        92
+## 3                         93                        93
+## 4                         94                        93
+## 5                         94                        93
+## 6                         93                        91
+## 7                         94                        93
+## 8                         94                        93
+## 9                         93                        93
+## 10                        94                        92
+##    UMIDADERELATIVADOARHORARIA VENTODIREÃÃƒOHORARIAgrÂgr VENTORAJADAMAXIMAms
+## 1                          92                       124                 5,7
+## 2                          93                       104                 5,7
+## 3                          93                       133                 3,7
+## 4                          94                         2                 2,3
+## 5                          93                        23                 1,6
+## 6                          93                        23                 1,1
+## 7                          94                       111                 1,5
+## 8                          93                        87                   2
+## 9                          93                        60                 2,2
+## 10                         94                        68                   2
+##    VENTOVELOCIDADEHORARIAms
+## 1                       2,8
+## 2                         2
+## 3                        ,9
+## 4                         0
+## 5                        ,2
+## 6                        ,2
+## 7                        ,1
+## 8                        ,1
+## 9                        ,9
+## 10                       ,1</code></pre>
+</div>
+<div id="d-converta-a-variável-data-para-tipo-date."
+class="section level2">
+<h2>(d) Converta a variável data para tipo date.</h2>
+<pre class="r"><code>dados$Data &lt;- as.Date(dados$Data, format = &quot;%Y/%m/%d&quot;)</code></pre>
+</div>
+<div id="e-adicione-ao-objeto-dados-as-variáveis-dia-e-mês."
+class="section level2">
+<h2>(e) Adicione ao objeto dados as variáveis dia e mês.</h2>
+<pre class="r"><code>dados$dia &lt;- format(dados$Data, format = &quot;%d&quot;) %&gt;% as.numeric()
+dados$mes &lt;- format(dados$Data, format = &quot;%m&quot;) %&gt;% as.numeric()
+dados$ano &lt;- format(dados$Data, format = &quot;%Y&quot;) %&gt;% as.numeric()</code></pre>
+</div>
+<div
+id="f-a-partir-do-objeto-dados-crie-uma-lista-com-o-nome-dados.lista-de-tamanho-12-com-as-observações-referentes-a-cada-um-dos-meses."
+class="section level2">
+<h2>(f) A partir do objeto dados crie uma lista, com o nome dados.lista,
+de tamanho 12 com as observações referentes a cada um dos meses.</h2>
+<pre class="r"><code>dados.lista &lt;- with(dados, split(dados, mes))
+length(dados.lista)</code></pre>
+<pre><code>## [1] 12</code></pre>
+<pre class="r"><code># ou
+
+dados.lista &lt;- list()
+for(i in 1:12){
+    dados.lista[[i]] &lt;- dados[dados$mes == i, ]
+}
+length(dados.lista)</code></pre>
+<pre><code>## [1] 12</code></pre>
+</div>
+<div
+id="g-exporte-para-o-formato-.csv-cada-objeto-da-lista-usandos-os-nomes-jan.csv-feb.csv-mar.csv-apr.csv-may.csv-jun.csv-jul.csv-aug.csv-sep.csv-oct.csv-nov.csv-e-dec.csv.-especifique-como-separador-de-campo-o-caracter-e-.-como-indicador-de-valores-perdidos."
+class="section level2">
+<h2>(g) Exporte para o formato .csv cada objeto da lista usandos os
+nomes: jan.csv, feb.csv, mar.csv, apr.csv, may.csv, jun.csv, jul.csv,
+aug.csv, sep.csv, oct.csv, nov.csv e dec.csv. Especifique como separador
+de campo o caracter ? e . como indicador de valores perdidos.</h2>
+<pre class="r"><code>for(i in 1:12){
+    externo &lt;- paste0(tolower(month.abb[i]), &quot;.csv&quot;)
+    print(paste(&quot;Arquivo&quot;,externo,&quot;exportado!&quot;))
+    write.table(x = dados.lista[[i]],
+                file = externo,
+                sep = &quot;;&quot;,
+                na = &quot;.&quot;,
+                row.names = TRUE)
+}</code></pre>
+<pre><code>## [1] &quot;Arquivo jan.csv exportado!&quot;
+## [1] &quot;Arquivo feb.csv exportado!&quot;
+## [1] &quot;Arquivo mar.csv exportado!&quot;
+## [1] &quot;Arquivo apr.csv exportado!&quot;
+## [1] &quot;Arquivo may.csv exportado!&quot;
+## [1] &quot;Arquivo jun.csv exportado!&quot;
+## [1] &quot;Arquivo jul.csv exportado!&quot;
+## [1] &quot;Arquivo aug.csv exportado!&quot;
+## [1] &quot;Arquivo sep.csv exportado!&quot;
+## [1] &quot;Arquivo oct.csv exportado!&quot;
+## [1] &quot;Arquivo nov.csv exportado!&quot;
+## [1] &quot;Arquivo dec.csv exportado!&quot;</code></pre>
+</div>
+<div id="h-determine-a-dimensão-do-objeto-dados."
+class="section level2">
+<h2>(h) Determine a dimensão do objeto dados.</h2>
+<pre class="r"><code>dim(dados)</code></pre>
+<pre><code>## [1] 8760   22</code></pre>
+<pre class="r"><code>lapply(1:12, function(i) dim(dados.lista[[i]]))</code></pre>
+<pre><code>## [[1]]
+## [1] 744  22
+## 
+## [[2]]
+## [1] 672  22
+## 
+## [[3]]
+## [1] 744  22
+## 
+## [[4]]
+## [1] 720  22
+## 
+## [[5]]
+## [1] 744  22
+## 
+## [[6]]
+## [1] 720  22
+## 
+## [[7]]
+## [1] 744  22
+## 
+## [[8]]
+## [1] 744  22
+## 
+## [[9]]
+## [1] 720  22
+## 
+## [[10]]
+## [1] 744  22
+## 
+## [[11]]
+## [1] 720  22
+## 
+## [[12]]
+## [1] 744  22</code></pre>
+<pre class="r"><code># sapply(1:12, function(i) dim(dados.lista[[i]]))</code></pre>
+</div>
+<div
+id="i-a-partir-do-objeto-dados-crie-um-objeto-dados1-contendo-as-médias-diárias-de-cada-uma-das-variáveis-climatológicas."
+class="section level2">
+<h2>(i) A partir do objeto dados crie um objeto dados1 contendo as
+médias diárias de cada uma das variáveis climatológicas.</h2>
+<pre class="r"><code>dados$precp &lt;- gsub(&quot;,&quot;,&quot;.&quot;,dados$precp) %&gt;% as.numeric()
+
+with(dados, tapply(precp, dia, sum, na.rm=T))</code></pre>
+<pre><code>##                    1                    2                    3 
+##  48.2000000000000028  34.7999999999999972  80.4000000000000057 
+##                    4                    5                    6 
+##  43.0000000000000000  18.8000000000000007   6.4000000000000004 
+##                    7                    8                    9 
+##  94.7999999999999972  22.0000000000000000  48.3999999999999986 
+##                   10                   11                   12 
+##   5.0000000000000000  10.1999999999999993  10.5999999999999996 
+##                   13                   14                   15 
+##   2.7999999999999998  55.6000000000000014  41.3999999999999986 
+##                   16                   17                   18 
+##  65.2000000000000028  81.7999999999999972  35.2000000000000028 
+##                   19                   20                   21 
+##  12.4000000000000004  53.3999999999999986  12.0000000000000000 
+##                   22                   23                   24 
+##  15.7999999999999989  40.2000000000000028  81.5999999999999943 
+##                   25                   26                   27 
+##   5.6000000000000005  18.3999999999999986  14.4000000000000004 
+##                   28                   29                   30 
+##  49.3999999999999986  39.3999999999999986 181.8000000000000114 
+##                   31 
+##  24.1999999999999993</code></pre>
+<pre class="r"><code>(unique(cbind(dados$dia,dados$mes))[,1] %&gt;% table())</code></pre>
+<pre><code>## .
+##  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 
+## 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 
+## 27 28 29 30 31 
+## 12 12 11 11  7</code></pre>
+<pre class="r"><code>(dados1 &lt;- with(dados, tapply(precp, dia, sum, na.rm=T)) / (unique(cbind(dados$dia,dados$mes))[,1] %&gt;% table()) )</code></pre>
+<pre><code>##                    1                    2                    3 
+##  4.01666666666666661  2.89999999999999991  6.70000000000000018 
+##                    4                    5                    6 
+##  3.58333333333333348  1.56666666666666665  0.53333333333333333 
+##                    7                    8                    9 
+##  7.89999999999999947  1.83333333333333326  4.03333333333333321 
+##                   10                   11                   12 
+##  0.41666666666666669  0.84999999999999998  0.88333333333333330 
+##                   13                   14                   15 
+##  0.23333333333333331  4.63333333333333375  3.44999999999999973 
+##                   16                   17                   18 
+##  5.43333333333333357  6.81666666666666643  2.93333333333333357 
+##                   19                   20                   21 
+##  1.03333333333333344  4.45000000000000018  1.00000000000000000 
+##                   22                   23                   24 
+##  1.31666666666666665  3.35000000000000009  6.79999999999999982 
+##                   25                   26                   27 
+##  0.46666666666666673  1.53333333333333321  1.19999999999999996 
+##                   28                   29                   30 
+##  4.11666666666666625  3.58181818181818157 16.52727272727272734 
+##                   31 
+##  3.45714285714285685</code></pre>
+<pre class="r"><code>#  24.1999999999999993 / 7</code></pre>
+</div>
+<div
+id="j-a-partir-do-objeto-dados-crie-um-objeto-dados2-contendo-as-médias-mensais-de-cada-uma-das-variáveis-climatológicas."
+class="section level2">
+<h2>(j) A partir do objeto dados crie um objeto dados2 contendo as
+médias mensais de cada uma das variáveis climatológicas.</h2>
+<pre class="r"><code>with(dados, tapply(precp, mes, sum, na.rm=T))</code></pre>
+<pre><code>##                    1                    2                    3 
+## 337.3999999999999773  11.8000000000000007 129.5999999999999943 
+##                    4                    5                    6 
+##   2.7999999999999998 130.5999999999999943  36.0000000000000000 
+##                    7                    8                    9 
+##  46.3999999999999986  25.8000000000000007  47.6000000000000014 
+##                   10                   11                   12 
+## 398.8000000000000114  40.7999999999999972  45.6000000000000014</code></pre>
+<pre class="r"><code># precipitação média por hora dentro de cada mês
+with(dados, tapply(precp, mes, mean, na.rm=T))</code></pre>
+<pre><code>##                     1                     2                     3 
+## 0.4534946236559139754 0.0175595238095238096 0.1741935483870967749 
+##                     4                     5                     6 
+## 0.0038888888888888888 0.1755376344086021501 0.0511363636363636326 
+##                     7                     8                     9 
+## 0.0652601969057665238 0.0346774193548387080 0.0661111111111111066 
+##                    10                    11                    12 
+## 0.5360215053763440762 0.0566666666666666707 0.0612903225806451582</code></pre>
+<pre class="r"><code># 337.39 / (31 * 24) 
+
+# precipitação média por dia dentro de cada mês
+(with(dados, tapply(precp, mes, mean, na.rm=T))*24)</code></pre>
+<pre><code>##                     1                     2                     3 
+## 10.883870967741934521  0.421428571428571430  4.180645161290322598 
+##                     4                     5                     6 
+##  0.093333333333333324  4.212903225806451601  1.227272727272727071 
+##                     7                     8                     9 
+##  1.566244725738396681  0.832258064516129048  1.586666666666666448 
+##                    10                    11                    12 
+## 12.864516129032256941  1.360000000000000098  1.470967741935483852</code></pre>
+<pre class="r"><code>with(dados, tapply(precp, mes, sum, na.rm=T))</code></pre>
+<pre><code>##                    1                    2                    3 
+## 337.3999999999999773  11.8000000000000007 129.5999999999999943 
+##                    4                    5                    6 
+##   2.7999999999999998 130.5999999999999943  36.0000000000000000 
+##                    7                    8                    9 
+##  46.3999999999999986  25.8000000000000007  47.6000000000000014 
+##                   10                   11                   12 
+## 398.8000000000000114  40.7999999999999972  45.6000000000000014</code></pre>
+<pre class="r"><code>(unique(cbind(dados$mes,dados$ano))[,1] %&gt;% table())</code></pre>
+<pre><code>## .
+##  1  2  3  4  5  6  7  8  9 10 11 12 
+##  1  1  1  1  1  1  1  1  1  1  1  1</code></pre>
+<pre class="r"><code>prec.acm.dia &lt;- with(dados, tapply(precp, interaction(dia, mes), sum, na.rm = T))
+ts.plot(prec.acm.dia)</code></pre>
+<p><img
+src="about_files/figure-html/unnamed-chunk-11-1.png" /><!-- --></p>
+<pre class="r"><code>hist(prec.acm.dia)</code></pre>
+<p><img
+src="about_files/figure-html/unnamed-chunk-11-2.png" /><!-- --></p>
+<pre class="r"><code># precipitação média por mês
+# Como cada mês refere-se somente a um ano (2021), 
+# então o valor médio por mês equivale a soma
+# do valor precipitado no mês
+(dados2 &lt;- with(dados, tapply(precp, mes, sum, na.rm=T)) / (unique(cbind(dados$mes,dados$ano))[,1] %&gt;% table()) )</code></pre>
+<pre><code>##                    1                    2                    3 
+## 337.3999999999999773  11.8000000000000007 129.5999999999999943 
+##                    4                    5                    6 
+##   2.7999999999999998 130.5999999999999943  36.0000000000000000 
+##                    7                    8                    9 
+##  46.3999999999999986  25.8000000000000007  47.6000000000000014 
+##                   10                   11                   12 
+## 398.8000000000000114  40.7999999999999972  45.6000000000000014</code></pre>
+<pre class="r"><code>(dados2 &lt;- with(dados, tapply(precp, mes, sum, na.rm=T)))</code></pre>
+<pre><code>##                    1                    2                    3 
+## 337.3999999999999773  11.8000000000000007 129.5999999999999943 
+##                    4                    5                    6 
+##   2.7999999999999998 130.5999999999999943  36.0000000000000000 
+##                    7                    8                    9 
+##  46.3999999999999986  25.8000000000000007  47.6000000000000014 
+##                   10                   11                   12 
+## 398.8000000000000114  40.7999999999999972  45.6000000000000014</code></pre>
+</div>
+<div
+id="k-a-partir-do-objeto-dados-crie-objetos-contendo-os-recordes-de-precipitação-e-temperatura.-exemplo-em-uma-sequência-15349815-temos-os-seguintes-recordes-15915"
+class="section level2">
+<h2>(k) A partir do objeto dados crie objetos contendo os recordes de
+precipitação e temperatura. (Exemplo: em uma sequência 1,5,3,4,9,8,15
+temos os seguintes recordes 1,5,9,15)</h2>
+<pre class="r"><code># em construção</code></pre>
+</div>
+<div
+id="l-a-partir-do-objeto-dados-crie-um-objeto-dados4-contendo-a-precipitação-acumulada-no-período-de-24-horas."
+class="section level2">
+<h2>(l) A partir do objeto dados crie um objeto dados4 contendo a
+precipitação acumulada no período de 24 horas.</h2>
+<pre class="r"><code>dados &lt;- dados[order(dados[,&quot;Data&quot;],dados[,&quot;hora&quot;]),]
+dados4 &lt;- dados[,c(&quot;Data&quot;,&quot;hora&quot;,&quot;precp&quot;)]
+dados4 &lt;- dados4 %&gt;% 
+            dplyr::group_by(Data) %&gt;% 
+            dplyr::mutate(precp_acum = cumsum(precp))
+dados4</code></pre>
+<pre><code>## # A tibble: 8,760 x 4
+## # Groups:   Data [365]
+##    Data       hora     precp precp_acum
+##    &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+##  1 2021-01-01 0000 UTC     0          0
+##  2 2021-01-01 0100 UTC     0          0
+##  3 2021-01-01 0200 UTC     0          0
+##  4 2021-01-01 0300 UTC     0          0
+##  5 2021-01-01 0400 UTC     0          0
+##  6 2021-01-01 0500 UTC     0          0
+##  7 2021-01-01 0600 UTC     0          0
+##  8 2021-01-01 0700 UTC     0          0
+##  9 2021-01-01 0800 UTC     0          0
+## 10 2021-01-01 0900 UTC     0          0
+## # ... with 8,750 more rows</code></pre>
+</div>
+<div
+id="m-a-partir-do-objeto-dados4-crie-um-vetor-com-o-tamanho-das-sequências-de-dias-com-chuva."
+class="section level2">
+<h2>(m) A partir do objeto dados4 crie um vetor com o tamanho das
+sequências de dias com chuva.</h2>
+<pre class="r"><code>dias_com_chuva &lt;- dados4 %&gt;% 
+    dplyr::group_by(Data) %&gt;% 
+    dplyr::summarize(chuva_acumulada_por_dia = max(precp_acum)) %&gt;% 
+    dplyr::mutate(Dia_com_chuva = ifelse(is.na(chuva_acumulada_por_dia),FALSE,I(chuva_acumulada_por_dia&gt;0) ))
+
+dias_com_chuva %&gt;% head(10)</code></pre>
+<pre><code>## # A tibble: 10 x 3
+##    Data       chuva_acumulada_por_dia Dia_com_chuva
+##    &lt;date&gt;                       &lt;dbl&gt; &lt;lgl&gt;        
+##  1 2021-01-01                     0   FALSE        
+##  2 2021-01-02                     0.2 TRUE         
+##  3 2021-01-03                     0   FALSE        
+##  4 2021-01-04                     0   FALSE        
+##  5 2021-01-05                     0.8 TRUE         
+##  6 2021-01-06                     2.2 TRUE         
+##  7 2021-01-07                    29.6 TRUE         
+##  8 2021-01-08                    21.6 TRUE         
+##  9 2021-01-09                     0   FALSE        
+## 10 2021-01-10                     0   FALSE</code></pre>
+<pre class="r"><code>dias_com_chuva %&gt;% dplyr::pull(Dia_com_chuva) %&gt;% head(10)</code></pre>
+<pre><code>##  [1] FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+</div>
+<div
+id="n-construa-a-distribuição-de-frequências-da-variável-precipitação-diária-considerando-10-intervalos-de-classe."
+class="section level2">
+<h2>(n) Construa a distribuição de frequências da variável “precipitação
+diária” considerando 10 intervalos de classe.</h2>
+<pre class="r"><code>h &lt;- hist(dias_com_chuva[[&quot;chuva_acumulada_por_dia&quot;]], breaks = 10)
+h</code></pre>
+<pre><code>## $breaks
+##  [1]   0  10  20  30  40  50  60  70  80  90 100
+## 
+## $counts
+##  [1] 320  15   8   6   3   0   3   0   0   1
+## 
+## $density
+##  [1] 0.08988764044943819975 0.00421348314606741561 0.00224719101123595525
+##  [4] 0.00168539325842696633 0.00084269662921348317 0.00000000000000000000
+##  [7] 0.00084269662921348317 0.00000000000000000000 0.00000000000000000000
+## [10] 0.00028089887640449441
+## 
+## $mids
+##  [1]  5 15 25 35 45 55 65 75 85 95
+## 
+## $xname
+## [1] &quot;dias_com_chuva[[\&quot;chuva_acumulada_por_dia\&quot;]]&quot;
+## 
+## $equidist
+## [1] TRUE
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;histogram&quot;</code></pre>
+<pre class="r"><code>tab &lt;- agricolae::table.freq(h)</code></pre>
+<p><img
+src="about_files/figure-html/unnamed-chunk-15-1.png" /><!-- --></p>
+<pre class="r"><code>tab</code></pre>
+<pre><code>##    Lower Upper Main Frequency           Percentage  CF                 CPF
+## 1      0    10    5       320 89.90000000000000568 320  89.900000000000006
+## 2     10    20   15        15  4.20000000000000018 335  94.099999999999994
+## 3     20    30   25         8  2.20000000000000018 343  96.299999999999997
+## 4     30    40   35         6  1.69999999999999996 349  98.000000000000000
+## 5     40    50   45         3  0.80000000000000004 352  98.900000000000006
+## 6     50    60   55         0  0.00000000000000000 352  98.900000000000006
+## 7     60    70   65         3  0.80000000000000004 355  99.700000000000003
+## 8     70    80   75         0  0.00000000000000000 355  99.700000000000003
+## 9     80    90   85         0  0.00000000000000000 355  99.700000000000003
+## 10    90   100   95         1  0.29999999999999999 356 100.000000000000000</code></pre>
+</div>
+<div
+id="o-construa-a-distribuição-de-frequências-da-variável-precipitação-diária-considerando-que-as-quebras-ocorrem-nos-valores-de-k-em-que-k---fivenumprecipitacao.diaria."
+class="section level2">
+<h2>(o) Construa a distribuição de frequências da variável “precipitação
+diária” considerando que as quebras ocorrem nos valores de k, em que k
+&lt;- fivenum(precipitacao.diaria).</h2>
+<pre class="r"><code>k &lt;- fivenum(dias_com_chuva[[&quot;chuva_acumulada_por_dia&quot;]])
+h_fivenum &lt;- hist(dias_com_chuva[[&quot;chuva_acumulada_por_dia&quot;]], breaks = k[-c(1:2)])</code></pre>
+<p><img
+src="about_files/figure-html/unnamed-chunk-16-1.png" /><!-- --></p>
+<pre class="r"><code>h_fivenum</code></pre>
+<pre><code>## $breaks
+## [1]  0.00000000000000000  0.60000000000000009 94.00000000000000000
+## 
+## $counts
+## [1] 269  87
+## 
+## $density
+## [1] 1.2593632958801497246 0.0026165098765729131
+## 
+## $mids
+## [1]  0.30000000000000004 47.29999999999999716
+## 
+## $xname
+## [1] &quot;dias_com_chuva[[\&quot;chuva_acumulada_por_dia\&quot;]]&quot;
+## 
+## $equidist
+## [1] FALSE
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;histogram&quot;</code></pre>
+</div>
+<div
+id="p-faça-uma-análise-descritiva-de-cada-uma-das-variáveis-considerando-o-período-de-24-horas."
+class="section level2">
+<h2>(p) Faça uma análise descritiva de cada uma das variáveis
+considerando o período de 24 horas.</h2>
+<pre class="r"><code># em construção</code></pre>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
